@@ -1,0 +1,451 @@
+/* =========================================================
+   COWILL AI LAB 電子名刺LP
+   方針：ナチュラル和モダン × 知的AIブルー
+   配色 / フォントは docs/lp-design-policy.md v0.2 に準拠
+   ========================================================= */
+
+:root {
+  --bg: #F6F2E9;        /* 背景：生成りオフホワイト */
+  --text: #3A3A38;      /* 文字：チャコール */
+  --heading: #2C3E50;   /* 見出し：ウォームネイビー */
+  --gold: #C9A86A;      /* 温かいアクセント：ゴールドベージュ */
+  --blue: #5DBFE8;      /* AIブルー（効かせ色・線のみ） */
+  --alt-bg: #EFEBDF;    /* 区切り用のやや濃い生成り */
+  --omoi-bg: #ECEFF2;   /* 想い：ネイビーのごく淡いトーン */
+
+  --serif: "Noto Serif JP", serif;       /* 見出し（明朝） */
+  --sans: "Noto Sans JP", sans-serif;    /* 本文 */
+
+  --maxw: 620px;        /* 本文幅を少し広げ、間延びを解消 */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--alt-bg);  /* ページ外側はやや濃いめ。LP本体は生成り */
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* LP本体：中央寄せの1カラム（スマホ幅で固定して上品に） */
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ---------- 共通：セクション ---------- */
+.section {
+  padding: 44px 28px;
+  text-align: center;
+}
+.section--alt { background: var(--alt-bg); }
+
+.section__heading {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--heading);
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 32px;
+}
+
+/* ゴールドベージュの短い細線（碑文感を避けるため非表示。残しておけば後で再有効化可） */
+.accent-line {
+  display: none;
+}
+
+/* ---------- ① ファーストビュー ---------- */
+/* min-height: 100vh をやめ、内容に応じた自然な高さに（写真直下にキャッチが続く） */
+.hero {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* 写真ゾーン（上 約55%）。images/hero.jpg を表示
+   ・縦長写真なので contain で全身を切らずに収める
+   ・背景色を写真の地色になじませ、左右の余白を上品に残す */
+.hero__photo {
+  flex: 0 0 34vh;
+  background-color: #F1ECE1;
+  background-image: url("images/hero.jpg");
+  background-size: auto 96%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero__photo-note {
+  font-size: 0.8rem;
+  color: #9a917c;
+  letter-spacing: 0.1em;
+}
+
+/* テキストゾーン。写真直下から自然にまとまって続く（縦中央寄せをやめる） */
+.hero__body {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 28px 28px 32px;
+}
+
+/* ロゴ（小さく中央）。images/logo.png のエンブレム部分を円形に切り抜いて表示
+   ・白背景の角と、ロゴ内の「COWILL AI LAB」文字をカットして、円のエンブレムだけを見せる
+   ・外周のラインは付けず、生成りに自然に溶け込ませる
+   ※ background-size / position は目視で微調整できます */
+.hero__logo {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("images/logo.png");
+  background-repeat: no-repeat;
+  background-size: 152%;
+  background-position: center 12%;
+}
+
+.hero__catch {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--heading);
+  font-size: 1.35rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.hero__sub {
+  font-size: 0.95rem;
+  line-height: 1.95;
+  color: var(--text);
+  margin: 16px 0 26px;
+}
+
+.hero__name { line-height: 1.8; }
+.hero__brand {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+.hero__person { margin: 2px 0 0; font-size: 0.95rem; }
+.hero__title {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: #6f6a60;
+  letter-spacing: 0.04em;
+}
+.hero__title .dot { color: var(--gold); }
+
+/* ---------- ② 一言メッセージ ---------- */
+.section--message {
+  background: var(--bg);
+  padding: 52px 28px;
+}
+.message {
+  font-size: 1.0rem;
+  line-height: 2.1;
+  margin: 0 0 28px;
+}
+.message:last-child { margin-bottom: 0; }
+
+/* ---------- ③ 想い ---------- */
+.section--omoi {
+  background: var(--omoi-bg);
+  padding: 56px 28px;
+}
+.omoi__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--heading);
+  font-size: 1.35rem;
+  line-height: 1.7;
+  margin: 0 0 28px;
+}
+.omoi__text {
+  font-size: 0.98rem;
+  line-height: 2.1;
+  margin: 0 0 22px;
+}
+.omoi__text:last-child { margin-bottom: 0; }
+
+/* ---------- ④ こんな方に（チェックリスト） ---------- */
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.checklist li {
+  position: relative;
+  padding: 0 0 0 28px;
+  margin: 0 0 18px;
+  font-size: 0.96rem;
+  line-height: 1.8;
+}
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--blue);  /* AIブルーは“線”で効かせる */
+  border-radius: 50%;
+}
+
+/* ---------- ⑤ できること（カード） ---------- */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.card {
+  background: var(--bg);
+  border: 1px solid #e0d8c4;
+  border-radius: 10px;
+  padding: 22px 20px;
+  text-align: left;
+}
+.card__title {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+}
+.card__text {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin: 0;
+}
+.note {
+  margin: 32px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: #6f6a60;
+}
+
+/* ---------- ⑥ 大切にしている考え方 ---------- */
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  text-align: left;
+}
+.value { position: relative; padding-left: 18px; }
+.value::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  bottom: 0.3em;
+  width: 2px;
+  background: var(--gold);  /* 左に細いゴールドの線 */
+}
+.value__title {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 1.0rem;
+  margin: 0 0 6px;
+}
+.value__text {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ---------- ⑦ プロフィール ---------- */
+.profile { }
+.profile__photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background-color: #E9E2D5;
+  background-image: url("images/profile.jpg");
+  background-size: 145%;
+  background-position: 58% top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile__photo-note {
+  font-size: 0.75rem;
+  color: #9a917c;
+}
+.profile__name {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 24px;
+}
+.profile__story { text-align: left; }
+.profile__story p {
+  font-size: 0.95rem;
+  line-height: 2.0;
+  margin: 0 0 18px;
+}
+.profile__title {
+  margin: 24px 0 0;
+  font-size: 0.82rem;
+  color: #6f6a60;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- ⑧ 活動・実績 ---------- */
+.works__text {
+  font-size: 0.96rem;
+  line-height: 1.85;
+  margin: 0 0 14px;
+}
+.works__divider {
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+  margin: 20px auto 14px;
+  opacity: 0.7;
+}
+.works__subhead {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+  margin: 18px 0 10px;
+}
+.works__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 18px;
+  max-width: 360px;
+  text-align: left;
+}
+.works__list li {
+  position: relative;
+  padding-left: 16px;
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+.works__list li::before {
+  content: "・";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.works__note {
+  font-size: 0.82rem;
+  color: #6f6a60;
+  margin: 24px 0 0;
+}
+
+/* ---------- ⑨ AI事業パートナー ---------- */
+.partners__intro {
+  font-size: 0.95rem;
+  line-height: 2.0;
+  margin: 0 0 28px;
+}
+.partners__label {
+  font-size: 0.82rem;
+  color: #6f6a60;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+}
+.partners__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.partners__list li {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  margin: 0 0 8px;
+}
+
+/* ---------- ⑩ お問い合わせ ---------- */
+.section--contact {
+  background: var(--bg);
+  padding: 52px 28px 48px;
+}
+.contact__text {
+  font-size: 0.96rem;
+  line-height: 2.0;
+  margin: 0 0 22px;
+}
+.button {
+  display: inline-block;
+  margin: 14px 0 28px;
+  padding: 15px 30px;
+  border: 1.5px solid var(--blue);   /* 縁取りだけブルー・面は塗らない */
+  border-radius: 30px;
+  background: var(--bg);
+  color: var(--heading);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.contact__links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  font-size: 0.9rem;
+  line-height: 2.0;
+}
+.contact__links a { color: var(--heading); }
+.contact__yoin {
+  font-family: var(--serif);
+  color: var(--heading);
+  font-size: 0.98rem;
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* このページについて（控えめな添え書き） */
+.contact__about {
+  margin: 36px auto 0;
+  max-width: 380px;
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: #6f6a60;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- フッター ---------- */
+.footer {
+  background: var(--alt-bg);
+  text-align: center;
+  padding: 28px;
+  font-size: 0.8rem;
+  color: #6f6a60;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- PCで開いたとき：左右に余白、本体は中央 ---------- */
+@media (min-width: 600px) {
+  body { padding: 24px 0; }
+  .page {
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(44, 62, 80, 0.08);
+  }
+}
