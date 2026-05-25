@@ -160,8 +160,10 @@ body {
 }
 .message {
   font-size: 1.0rem;
-  line-height: 2.1;
-  margin: 0 0 28px;
+  line-height: 2.0;
+  margin: 0 auto 24px;
+  max-width: 460px;
+  text-align: left;
 }
 .message:last-child { margin-bottom: 0; }
 
@@ -180,8 +182,10 @@ body {
 }
 .omoi__text {
   font-size: 0.98rem;
-  line-height: 2.1;
-  margin: 0 0 22px;
+  line-height: 2.0;
+  margin: 0 auto 20px;
+  max-width: 460px;
+  text-align: left;
 }
 .omoi__text:last-child { margin-bottom: 0; }
 
@@ -313,7 +317,9 @@ body {
 .works__text {
   font-size: 0.96rem;
   line-height: 1.85;
-  margin: 0 0 14px;
+  margin: 0 auto 14px;
+  max-width: 460px;
+  text-align: left;
 }
 .works__divider {
   width: 56px;
@@ -389,7 +395,9 @@ body {
 .contact__text {
   font-size: 0.96rem;
   line-height: 2.0;
-  margin: 0 0 22px;
+  margin: 0 auto 22px;
+  max-width: 460px;
+  text-align: left;
 }
 .button {
   display: inline-block;
