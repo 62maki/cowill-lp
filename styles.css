@@ -123,17 +123,21 @@ body {
   font-family: var(--serif);
   font-weight: 600;
   color: var(--heading);
-  font-size: 1.35rem;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  margin: 0 auto;
+  max-width: 360px;
+  text-wrap: balance;        /* 行を均等に分けて孤立文字を防ぐ */
 }
 
 .hero__sub {
   font-size: 0.95rem;
   line-height: 1.95;
   color: var(--text);
-  margin: 16px 0 26px;
+  margin: 16px auto 26px;
+  max-width: 340px;
+  text-wrap: pretty;         /* 行末の単語のはみ出し・孤立を抑える */
 }
 
 .hero__name { line-height: 1.8; }
@@ -232,6 +236,7 @@ body {
   color: var(--heading);
   font-size: 1.05rem;
   margin: 0 0 8px;
+  text-wrap: balance;        /* タイトルの行末孤立を予防 */
 }
 .card__text {
   font-size: 0.9rem;
@@ -267,6 +272,7 @@ body {
   color: var(--heading);
   font-size: 1.0rem;
   margin: 0 0 6px;
+  text-wrap: balance;        /* 「整える」の「る」孤立を防ぐ */
 }
 .value__text {
   font-size: 0.9rem;
