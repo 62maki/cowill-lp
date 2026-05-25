@@ -384,7 +384,9 @@ body {
 .partners__list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 240px;
+  text-align: left;
 }
 .partners__list li {
   font-family: var(--serif);
@@ -436,7 +438,9 @@ body {
   color: var(--heading);
   font-size: 0.98rem;
   line-height: 1.9;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 340px;
+  text-wrap: balance;
 }
 
 /* このページについて（控えめな添え書き） */
