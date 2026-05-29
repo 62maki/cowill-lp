@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=22" />
 </head>
 <body>
   <main class="page">
@@ -43,7 +43,7 @@
     </section>
 
     <!-- ② 一言メッセージ -->
-    <section class="section section--message">
+    <section class="section section--message reveal">
       <p class="message">
         AIは、人に置きかわるものではありません。そこで働く人を支え、その力を引き出す伴走者だと考えています。
       </p>
@@ -53,7 +53,7 @@
     </section>
 
     <!-- ③ 想い ―― AIにできること・できないこと（価値観・言葉だけの画面） -->
-    <section class="section section--omoi">
+    <section class="section section--omoi reveal">
       <h2 class="omoi__title">AIに、できること。<br />AIに、できないこと。</h2>
       <p class="omoi__text">
         AIは、文章を整えたり、情報をまとめたり、小さな仕組みを形にすることが得意です。
@@ -67,7 +67,7 @@
     </section>
 
     <!-- ④ こんな方に向いています -->
-    <section class="section">
+    <section class="section reveal">
       <h2 class="section__heading">こんな方に向いています</h2>
       <ul class="checklist">
         <li>AIに興味はあるけれど、何から始めればいいかわからない</li>
@@ -78,7 +78,7 @@
     </section>
 
     <!-- ⑤ できること（相談メニュー） -->
-    <section class="section section--alt">
+    <section class="section section--alt reveal">
       <h2 class="section__heading">できること</h2>
       <div class="cards">
         <article class="card">
@@ -105,7 +105,7 @@
     </section>
 
     <!-- ⑥ 大切にしている考え方（4軸） -->
-    <section class="section">
+    <section class="section reveal ">
       <h2 class="section__heading">大切にしている考え方</h2>
       <div class="values">
         <div class="value">
@@ -128,7 +128,7 @@
     </section>
 
     <!-- ⑦ プロフィール（想いの物語＋丸い顔写真） -->
-    <section class="section section--alt profile">
+    <section class="section section--alt profile reveal">
       <!-- 顔写真は images/profile.jpg を入れると表示されます -->
       <div class="profile__photo" role="img" aria-label="東尾真紀子（まっきー）の自然体の顔写真"></div>
       <p class="profile__name">東尾真紀子（まっきー）</p>
@@ -143,7 +143,7 @@
     </section>
 
     <!-- ⑧ 活動・実績 -->
-    <section class="section">
+    <section class="section reveal">
       <h2 class="section__heading">活動・実績</h2>
 
       <p class="works__text">
@@ -179,7 +179,7 @@
     </section>
 
     <!-- ⑨ AI事業パートナー（会社名のみ・ロゴなし） -->
-    <section class="section section--alt partners">
+    <section class="section section--alt partners reveal">
       <h2 class="section__heading">AI事業パートナー</h2>
       <p class="partners__intro">
         COWILL AI LABでは、必要に応じて専門性のある企業と連携しながら、AI活用や業務改善のご相談に対応しています。
@@ -192,7 +192,7 @@
     </section>
 
     <!-- ⑩ お問い合わせ（招きのボタン1つ＋余韻の一文） -->
-    <section class="section section--contact">
+    <section class="section section--contact reveal">
       <h2 class="section__heading">お問い合わせ</h2>
       <p class="contact__text">
         「AIに少し興味がある」「うちの現場にも、何か役立つかな」その段階で大丈夫です。ご相談だけでも歓迎します。
@@ -225,5 +225,27 @@
     </footer>
 
   </main>
+  <!-- スクロールでふわっと現れる（控えめに・一度きり）
+       ・IntersectionObserver を使うので軽量
+       ・一度表示したら監視を外し、以降の負荷はゼロ
+       ・OS で「視差効果を減らす」設定の方には CSS 側で動きを止める -->
+  <script>
+    (function () {
+      var targets = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
